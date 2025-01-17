@@ -7,16 +7,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.madhu.dto.GeneralResponse;
 import com.madhu.dto.TransactionDTO;
-import com.madhu.entity.Transaction;
 import com.madhu.exception.CustomerException;
-import com.madhu.exception.RecordException;
+import com.madhu.exception.SaleRecordException;
 import com.madhu.exception.TransactionException;
 import com.madhu.service.TransactionService;
 
@@ -34,7 +32,7 @@ public class TransactionController {
 
 	
 	@PostMapping
-	ResponseEntity<GeneralResponse> addTransaction(@RequestBody TransactionDTO transaction) throws TransactionException, RecordException {
+	ResponseEntity<GeneralResponse> addTransaction(@RequestBody TransactionDTO transaction) throws TransactionException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Transaction Added ");
@@ -78,7 +76,7 @@ public class TransactionController {
 
 	@GetMapping("/getRecordByTransactionId/{transactionId}")
 	ResponseEntity<GeneralResponse> getRecordByTransactionId(@PathVariable Integer transactionId)
-			throws TransactionException, RecordException {
+			throws TransactionException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Record Found By Transaction Id"+transactionId);

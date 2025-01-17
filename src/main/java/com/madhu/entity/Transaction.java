@@ -1,34 +1,31 @@
 package com.madhu.entity;
 
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.hibernate.annotations.UuidGenerator;
 
+import java.math.BigDecimal;
+
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Getter
-@Setter
-public class Transaction {
+@Data
+public class Transaction extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer transactionId;
-	private LocalDateTime timestamp;
-	private Integer amount;
-	private String description;
-	private String modeOfPayment;
+    @Id
+    @UuidGenerator
+    private String id;
+    private BigDecimal amount;
+    private String description;
+    private String modeOfPayment;
+    private String referenceImage;
 
-	@ManyToOne
-	@JsonBackReference
-	private SaleRecord saleRecord;
-	
-	private String referenceImage;
+    @ToString.Exclude
+    @ManyToOne
+    private SaleRecord saleRecord;
+
 
 }

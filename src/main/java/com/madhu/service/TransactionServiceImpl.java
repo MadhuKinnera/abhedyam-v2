@@ -11,7 +11,7 @@ import com.madhu.dto.TransactionDTO;
 import com.madhu.entity.SaleRecord;
 import com.madhu.entity.Transaction;
 import com.madhu.exception.CustomerException;
-import com.madhu.exception.RecordException;
+import com.madhu.exception.SaleRecordException;
 import com.madhu.exception.TransactionException;
 import com.madhu.repository.RecordRepo;
 import com.madhu.repository.TransactionRepo;
@@ -31,12 +31,12 @@ public class TransactionServiceImpl implements TransactionService {
 	private CommonUtils utils;
 
 	@Override
-	public Transaction addTransaction(TransactionDTO dto) throws TransactionException, RecordException {
+	public Transaction addTransaction(TransactionDTO dto) throws TransactionException, SaleRecordException {
 
 		var transaction = new Transaction();
 
 		SaleRecord record = recordRepo.findById(dto.getRecordId())
-				.orElseThrow(() -> new RecordException(Constants.RECORD_ID_NOT_FOUND + dto.getRecordId()));
+				.orElseThrow(() -> new SaleRecordException(Constants.RECORD_ID_NOT_FOUND + dto.getRecordId()));
 
 		
 		if(dto.getAmount()>record.getDueAmount()) 
@@ -100,7 +100,7 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public SaleRecord getRecordByTransactionId(Integer transactionId) throws TransactionException, RecordException {
+	public SaleRecord getRecordByTransactionId(Integer transactionId) throws TransactionException, SaleRecordException {
 
 		Transaction transaction = getTransactionById(transactionId);
 

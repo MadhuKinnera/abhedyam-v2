@@ -18,7 +18,7 @@ import com.madhu.dto.GeneralResponse;
 import com.madhu.dto.RemainderDTO;
 import com.madhu.entity.Remainder;
 import com.madhu.exception.CustomerException;
-import com.madhu.exception.RecordException;
+import com.madhu.exception.SaleRecordException;
 import com.madhu.exception.RemainderException;
 import com.madhu.exception.UserException;
 import com.madhu.service.RemainderService;
@@ -37,7 +37,7 @@ public class RemainderController {
 
 	@PostMapping
 	ResponseEntity<GeneralResponse> addRemainder(@RequestBody RemainderDTO remainder)
-			throws RemainderException, RecordException {
+			throws RemainderException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Remainder Added ");
@@ -79,7 +79,7 @@ public class RemainderController {
 
 	@GetMapping("/getRemaindersByRecordId/{recordId}")
 	ResponseEntity<GeneralResponse> getRemaindersByRecordId(@PathVariable Integer recordId)
-			throws RecordException, RemainderException {
+			throws SaleRecordException, RemainderException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Remainders Found with Record Id  " + recordId);

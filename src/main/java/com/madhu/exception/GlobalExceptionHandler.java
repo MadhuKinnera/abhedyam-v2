@@ -78,8 +78,8 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(RecordException.class)
-	ResponseEntity<GeneralResponse> recordExceptionHandler(RecordException e, WebRequest req) {
+	@ExceptionHandler(SaleRecordException.class)
+	ResponseEntity<GeneralResponse> recordExceptionHandler(SaleRecordException e, WebRequest req) {
 
 		var err = new GeneralResponse();
 

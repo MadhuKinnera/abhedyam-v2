@@ -20,7 +20,7 @@ import com.madhu.entity.SaleRecord;
 import com.madhu.exception.AddressException;
 import com.madhu.exception.CustomerException;
 import com.madhu.exception.ProductException;
-import com.madhu.exception.RecordException;
+import com.madhu.exception.SaleRecordException;
 import com.madhu.exception.RemainderException;
 import com.madhu.exception.TransactionException;
 import com.madhu.exception.VillageException;
@@ -40,7 +40,7 @@ public class RecordController {
 
 	@PostMapping
 	ResponseEntity<GeneralResponse> addRecordHandler(@RequestBody RecordDTO saleRecord)
-			throws RecordException, CustomerException, ProductException {
+			throws SaleRecordException, CustomerException, ProductException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Record Added ");
@@ -51,7 +51,7 @@ public class RecordController {
 
 	@PutMapping("/{recordId}")
 	ResponseEntity<GeneralResponse> updateRecordHandler(@PathVariable Integer recordId,
-			@RequestBody SaleRecord saleRecord) throws RecordException {
+			@RequestBody SaleRecord saleRecord) throws SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Record Updated with Id " + recordId);
@@ -61,7 +61,7 @@ public class RecordController {
 	}
 
 	@GetMapping("/{recordId}")
-	ResponseEntity<GeneralResponse> getRecordByRecordIdHandler(@PathVariable Integer recordId) throws RecordException {
+	ResponseEntity<GeneralResponse> getRecordByRecordIdHandler(@PathVariable Integer recordId) throws SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Record Found with Id ");
@@ -72,7 +72,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByCustomerId/{customerId}")
 	ResponseEntity<GeneralResponse> getRecordsByCustomerIdHandler(@PathVariable Integer customerId)
-			throws CustomerException, RecordException {
+			throws CustomerException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Record Found With Customer Id " + customerId);
@@ -82,7 +82,7 @@ public class RecordController {
 	}
 
 	@GetMapping
-	ResponseEntity<GeneralResponse> getRecordsByRankHandler() throws RecordException {
+	ResponseEntity<GeneralResponse> getRecordsByRankHandler() throws SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By Ranks ");
@@ -94,7 +94,7 @@ public class RecordController {
 	// ======================================
 
 	@DeleteMapping("/{recordId}")
-	ResponseEntity<GeneralResponse> deleteRecordByRecordId(@PathVariable Integer recordId) throws RecordException {
+	ResponseEntity<GeneralResponse> deleteRecordByRecordId(@PathVariable Integer recordId) throws SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Record Deleted with Id " + recordId);
@@ -105,7 +105,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordBetweenStartDates/{fromDate}/{toDate}")
 	ResponseEntity<GeneralResponse> getRecordsBetweenStartDatesTimeStamps(@PathVariable LocalDate fromDate,
-			@PathVariable LocalDate toDate) throws CustomerException, RecordException {
+			@PathVariable LocalDate toDate) throws CustomerException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found between " + fromDate + " and " + toDate);
@@ -116,7 +116,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordBetweenEndDates/{fromDate}/{toDate}")
 	ResponseEntity<GeneralResponse> getRecordsBetweenEndDatesTimeStamps(@PathVariable LocalDate fromDate,
-			@PathVariable LocalDate toDate) throws CustomerException, RecordException {
+			@PathVariable LocalDate toDate) throws CustomerException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found between " + fromDate + " and " + toDate);
@@ -127,7 +127,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByVillageId/{villageId}")
 	ResponseEntity<GeneralResponse> getRecordsByVillageId(@PathVariable Integer villageId)
-			throws VillageException, RecordException {
+			throws VillageException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By Village Id " + villageId);
@@ -138,7 +138,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByVillageName/{villageName}")
 	ResponseEntity<GeneralResponse> getRecordsByVillageName(@PathVariable String villageName)
-			throws VillageException, RecordException {
+			throws VillageException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By Village Name " + villageName);
@@ -149,7 +149,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByMandal/{mandal}")
 	ResponseEntity<GeneralResponse> getRecordsByMandal(@PathVariable String mandal)
-			throws VillageException, RecordException {
+			throws VillageException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By Mandal " + mandal);
@@ -160,7 +160,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByPincode/{pincode}")
 	ResponseEntity<GeneralResponse> getRecordsByPincode(@PathVariable Integer pincode)
-			throws VillageException, RecordException {
+			throws VillageException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By Pincode " + pincode);
@@ -171,7 +171,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByDistrict/{district}")
 	ResponseEntity<GeneralResponse> getRecordsByDistrict(@PathVariable String district)
-			throws VillageException, RecordException {
+			throws VillageException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By District " + district);
@@ -182,7 +182,7 @@ public class RecordController {
 
 	@GetMapping("/getTransactionsByRecordId/{recordId}")
 	ResponseEntity<GeneralResponse> getTransactionsByRecordId(@PathVariable Integer recordId)
-			throws RecordException, TransactionalException, TransactionException {
+			throws SaleRecordException, TransactionalException, TransactionException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Transactions Found By Record Id " + recordId);
@@ -193,7 +193,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByProductId/{productId}")
 	ResponseEntity<GeneralResponse> getRecordsByProductId(@PathVariable Integer productId)
-			throws RecordException, ProductException {
+			throws SaleRecordException, ProductException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By Product Id " + productId);
@@ -204,7 +204,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByProductName/{productName}")
 	ResponseEntity<GeneralResponse> getRecordsByProductName(@PathVariable String productName)
-			throws RecordException, ProductException {
+			throws SaleRecordException, ProductException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By Product Name  " + productName);
@@ -215,7 +215,7 @@ public class RecordController {
 
 	@GetMapping("/getRemaindersByRecordId/{recordId}")
 	ResponseEntity<GeneralResponse> getRemaindersByRecordId(@PathVariable Integer recordId)
-			throws RemainderException, RecordException {
+			throws RemainderException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Remainders Found By Record Id " + recordId);
@@ -226,7 +226,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByEmail/{email}")
 	ResponseEntity<GeneralResponse> getRecordsByEmail(@PathVariable String email)
-			throws CustomerException, RecordException {
+			throws CustomerException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Records Found By Email  " + email);
@@ -237,7 +237,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordsByCustomerName/{customerName}")
 	ResponseEntity<GeneralResponse> getRecordsByCustomerName(@PathVariable String customerName)
-			throws CustomerException, RecordException {
+			throws CustomerException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		System.out.println(customerName);
@@ -250,7 +250,7 @@ public class RecordController {
 
 	@GetMapping("/getVillageByRecordId/{recordId}")
 	ResponseEntity<GeneralResponse> getVillageByRecordId(@PathVariable Integer recordId)
-			throws VillageException, RecordException {
+			throws VillageException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Village Found By Record Id " + recordId);
@@ -261,7 +261,7 @@ public class RecordController {
 
 	@GetMapping("/getAddressByRecordId/{recordId}")
 	ResponseEntity<GeneralResponse> getAddressByRecordId(@PathVariable Integer recordId)
-			throws AddressException, RecordException {
+			throws AddressException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Address Found By Record Id " + recordId);
@@ -272,7 +272,7 @@ public class RecordController {
 
 	@GetMapping("/getProductByRecordId/{recordId}")
 	ResponseEntity<GeneralResponse> getProductByRecordId(@PathVariable Integer recordId)
-			throws ProductException, RecordException {
+			throws ProductException, SaleRecordException {
 		var generalResponse = new GeneralResponse();
 
 		generalResponse.setMessage("Product Found By Record Id " + recordId);
@@ -282,7 +282,7 @@ public class RecordController {
 	}
 
 	@GetMapping("/getRecordResponseModels")
-	ResponseEntity<GeneralResponse> getRecordResponseModels() throws RecordException {
+	ResponseEntity<GeneralResponse> getRecordResponseModels() throws SaleRecordException {
 
 		var generalResponse = new GeneralResponse();
 
@@ -294,7 +294,7 @@ public class RecordController {
 
 	@GetMapping("/getRecordResponeModelByRecordId/{recordId}")
 	ResponseEntity<GeneralResponse> getRecordResponseModelByrecordId(@PathVariable Integer recordId)
-			throws RecordException {
+			throws SaleRecordException {
 
 		var generalResponse = new GeneralResponse();
 
@@ -307,7 +307,7 @@ public class RecordController {
 	@GetMapping("/getRecordsByRecordIdOrCustomerNameOrProductName/{recordId}/{customerName}/{productName}")
 	ResponseEntity<GeneralResponse> getRecordsContainingRecordIdOrCustomerNameOrProductName(
 			@PathVariable Integer recordId, @PathVariable String customerName, @PathVariable String productName)
-			throws RecordException {
+			throws SaleRecordException {
 
 		var generalResponse = new GeneralResponse();
 

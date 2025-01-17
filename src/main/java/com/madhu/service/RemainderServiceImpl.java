@@ -11,7 +11,7 @@ import com.madhu.dto.RemainderDTO;
 import com.madhu.entity.Remainder;
 import com.madhu.entity.SaleRecord;
 import com.madhu.exception.CustomerException;
-import com.madhu.exception.RecordException;
+import com.madhu.exception.SaleRecordException;
 import com.madhu.exception.RemainderException;
 import com.madhu.exception.UserException;
 import com.madhu.repository.RecordRepo;
@@ -32,12 +32,12 @@ public class RemainderServiceImpl implements RemainderService {
 	private CommonUtils utils;
 
 	@Override
-	public Remainder addRemainder(RemainderDTO dto) throws RemainderException, RecordException {
+	public Remainder addRemainder(RemainderDTO dto) throws RemainderException, SaleRecordException {
 
 		var remainder = new Remainder();
 
 		SaleRecord record = recordRepo.findById(dto.getRecordId())
-				.orElseThrow(() -> new RecordException(Constants.RECORD_ID_NOT_FOUND + dto.getRecordId()));
+				.orElseThrow(() -> new SaleRecordException(Constants.RECORD_ID_NOT_FOUND + dto.getRecordId()));
 
 		remainder.setCreatedTimestamp(LocalDateTime.now());
 		remainder.setDescription(dto.getDescription());
@@ -77,12 +77,12 @@ public class RemainderServiceImpl implements RemainderService {
 	}
 
 	@Override
-	public List<Remainder> getRemaindersByRecordId(Integer recordId) throws RecordException, RemainderException {
+	public List<Remainder> getRemaindersByRecordId(Integer recordId) throws SaleRecordException, RemainderException {
 
 		List<Remainder> remainders = remainderRepo.findBySaleRecordRecordId(recordId);
 
 		if (remainders.isEmpty())
-			throw new RecordException(Constants.RECORD_ID_NOT_FOUND + recordId);
+			throw new SaleRecordException(Constants.RECORD_ID_NOT_FOUND + recordId);
 
 		return remainders;
 	}

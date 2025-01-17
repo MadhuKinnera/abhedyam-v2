@@ -2,8 +2,9 @@ package com.madhu.exception;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public class ProductException extends Exception {
-    private String message;
 
+    public ProductException(String msg){
+        super(msg);
+    }
 }

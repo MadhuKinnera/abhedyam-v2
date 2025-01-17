@@ -1,38 +1,28 @@
 package com.madhu.entity;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.ToString;
+import org.hibernate.annotations.UuidGenerator;
 
-@Getter
-@Setter
+import java.time.LocalDateTime;
+
+
 @Entity
+@Data
 public class Remainder {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer remainderId;
+    @Id
+    @UuidGenerator
+    private String id;
+    private LocalDateTime timestamp;
+    private String subject;
+    private String message;
 
-	private LocalDateTime createdTimestamp;
-
-	private LocalDate remainderDate;
-	
-	private String remainderMessage;
-	
-	private LocalDateTime remainderDateTime;
-	private String description;
-
-	@ManyToOne
-	@JsonBackReference
-	private SaleRecord saleRecord;
+    @ToString.Exclude
+    @ManyToOne
+    private SaleRecord saleRecord;
 
 }

@@ -6,13 +6,13 @@ import java.util.List;
 import com.madhu.dto.RemainderDTO;
 import com.madhu.entity.Remainder;
 import com.madhu.exception.CustomerException;
-import com.madhu.exception.RecordException;
+import com.madhu.exception.SaleRecordException;
 import com.madhu.exception.RemainderException;
 import com.madhu.exception.UserException;
 
 public interface RemainderService {
 	
-	 Remainder addRemainder(RemainderDTO dto) throws RemainderException,RecordException;
+	 Remainder addRemainder(RemainderDTO dto) throws RemainderException, SaleRecordException;
 	 
 	 Remainder getRemainderById(Integer remainderId)throws RemainderException;
 
@@ -22,7 +22,7 @@ public interface RemainderService {
 	 
 	 //added 03 sept
 	 
-	 List<Remainder> getRemaindersByRecordId(Integer recordId) throws RecordException,RemainderException;
+	 List<Remainder> getRemaindersByRecordId(Integer recordId) throws SaleRecordException,RemainderException;
 	 
 	 List<Remainder> getRemaindersByUserId(Integer userId) throws UserException,RemainderException;
 	 

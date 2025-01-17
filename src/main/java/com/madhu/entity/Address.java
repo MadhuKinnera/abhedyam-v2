@@ -15,7 +15,7 @@ public class Address {
 
     @Id
     @UuidGenerator
-    private Integer id;
+    private String id;
     private String street;
     private String landmark;
     private String description;

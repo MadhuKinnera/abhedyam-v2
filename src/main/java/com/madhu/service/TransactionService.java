@@ -8,12 +8,12 @@ import com.madhu.dto.TransactionDTO;
 import com.madhu.entity.SaleRecord;
 import com.madhu.entity.Transaction;
 import com.madhu.exception.CustomerException;
-import com.madhu.exception.RecordException;
+import com.madhu.exception.SaleRecordException;
 import com.madhu.exception.TransactionException;
 
 public interface TransactionService {
 
-	Transaction addTransaction(TransactionDTO dto) throws TransactionException,RecordException;
+	Transaction addTransaction(TransactionDTO dto) throws TransactionException, SaleRecordException;
 
 	Transaction getTransactionById(Integer transactionId) throws TransactionException;
 
@@ -25,7 +25,7 @@ public interface TransactionService {
 
 	List<Transaction> getAllTransactionsByCustomerId(Integer customerId) throws CustomerException, TransactionException;
 
-	SaleRecord getRecordByTransactionId(Integer transactionId) throws TransactionException, RecordException;
+	SaleRecord getRecordByTransactionId(Integer transactionId) throws TransactionException, SaleRecordException;
 
 	List<Transaction> getAllTransactionsByRank() throws TransactionException;
 

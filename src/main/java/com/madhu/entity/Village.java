@@ -7,16 +7,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Village {
 
 
@@ -37,6 +38,6 @@ public class Village {
     private List<Address> addresses = new ArrayList<>();
 
     @ManyToOne
-    @JsonBackReference
+    @ToString.Exclude
     private User user;
 }
